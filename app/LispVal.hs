@@ -20,9 +20,8 @@ data LispVal
   | Lambda IFunc EnvCtx
   | Nil
   | Bool Bool
-  -- deriving (Eq)
 
-data IFunc = IFunc {fn :: [LispVal] -> Eval LispVal}
+newtype IFunc = IFunc {fn :: [LispVal] -> Eval LispVal}
 
 instance Show LispVal where
   show = T.unpack . showVal
@@ -39,3 +38,7 @@ showVal val =
     (List contents) -> T.concat [T.pack "(", T.unwords $ showVal <$> contents, T.pack ")"]
     (Fun _) -> T.pack "(internal function)"
     (Lambda _ _) -> T.pack "(lambda function)"
+
+-- basicEnv :: Map.Map T.Text LispVal
+-- basicEnv = Map.fromList $ primEnv <> [("read", Fun $ IFunc $ unop readFn)]
+

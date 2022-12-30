@@ -28,6 +28,7 @@ executable scheme
     other-modules:
       LispVal 
       , Parser
+      , Eval
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

@@ -34,10 +34,6 @@ reservedOp op = Tok.reservedOp lexer $ T.unpack op
 parseAtom :: Parser LispVal
 parseAtom = Atom . T.pack <$> m_identifier
 
--- parseAtom = do
---   p <- m_identifier
---   return $ Atom $ T.pack p
-
 parseText :: Parser LispVal
 parseText = do
   reservedOp (T.pack "\"")
